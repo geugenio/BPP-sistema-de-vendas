@@ -1,10 +1,13 @@
 # Sistema de Controle de Estoque e Vendas
-# versao 1.0 - feito rapido pra entregar antes do prazo
-# autor: equipe antiga
+# versao 2.0 - correções iniciais de dívida técnica
+# autor:  Integrantes do relatório
 
 import datetime
+import os
 
-SENHA_ADMIN = "1234"  # senha do admin
+# D1: Configurações do sistema 
+# D1: Senha obtida via variável de ambiente
+SENHA_ADMIN = os.getenv("ESTOQUE_ADMIN_PWD")
 
 produtos = []
 
