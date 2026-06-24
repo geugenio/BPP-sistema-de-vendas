@@ -29,6 +29,7 @@ def add(nome, preco, quantidade, hist=None):
 
 
 def vender(nome, quantidade):
+# D6: Iteracao manual com range(len) aceita conscientemente
     for i in range(len(produtos)):
         if produtos[i]["nome"] == nome:
             if produtos[i]["qtd"] >= quantidade:
