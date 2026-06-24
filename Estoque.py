@@ -19,12 +19,12 @@ PERCENTUAL_DESCONTO_SIMULACAO = 0.15
 produtos = []
 
 
-# Argumento mutavel (D2)
-def add(n, p, q, hist=None):
+# Argumento mutavel (D2) e Ajuste de variáveis (D4)
+def add(nome, preco, quantidade, hist=None):
     if hist is None:
         hist = []
-    produtos.append({"nome": n, "preco": p, "qtd": q})
-    hist.append(n)
+    produtos.append({"nome": nome, "preco": preco, "qtd": quantidade})
+    hist.append(nome)
     print("Produto adicionado!")
 
 
@@ -33,7 +33,9 @@ def vender(nome, quantidade):
         if produtos[i]["nome"] == nome:
             if produtos[i]["qtd"] >= quantidade:
                 produtos[i]["qtd"] = produtos[i]["qtd"] - quantidade
+                # D4: Ajuste de nomenclaturas 
                 total = produtos[i]["preco"] * quantidade
+                
                 # D3: Retirada de Magic Numbers 
                 if total > LIMITE_PRECO_DESCONTO_VENDA:
                     descontoVenda = total * PERCENTUAL_DESCONTO_VENDA
@@ -47,28 +49,28 @@ def vender(nome, quantidade):
     return 0
 
 
-# calcula o total de uma compra (usado no relatorio)
+# D4: Ajuste de nomenclaturas 
 def calcular_total(preco, quantidade):
-    t = preco * quantidade
+    total = preco * quantidade
     # D3: Retirada de Magic Numbers
-    if t > LIMITE_PRECO_DESCONTO_SIMULACAO:
-        descontoSimulacao = t * PERCENTUAL_DESCONTO_SIMULACAO                   
-        t -= descontoSimulacao
-    return t
+    if total > LIMITE_PRECO_DESCONTO_SIMULACAO:
+        descontoSimulacao = total * PERCENTUAL_DESCONTO_SIMULACAO                   
+        total -= descontoSimulacao
+    return total
 
 
 def listar():
     print("=== PRODUTOS ===")
-    for x in produtos:
-        print(x["nome"] + " - R$" + str(x["preco"]) + " - qtd: " + str(x["qtd"]))
+    for produto in produtos:
+        print(produto["nome"] + " - R$" + str(produto["preco"]) + " - qtd: " + str(produto["qtd"]))
 
 
 def relatorio_estoque_baixo():
     print("=== ESTOQUE BAIXO ===")
-    for x in produtos:
+    for produto in produtos:
         # Retirada de Magic Numbers (D3)
-        if x["qtd"] < LIMITE_ESTOQUE_BAIXO:        
-            print(x["nome"] + " esta com estoque baixo (" + str(x["qtd"]) + ")")
+        if produto["qtd"] < LIMITE_ESTOQUE_BAIXO:        
+            print(produto["nome"] + " esta com estoque baixo (" + str(produto["qtd"]) + ")")
 
 
 # funcao antiga, nao usamos mais
