@@ -74,12 +74,7 @@ def relatorio_estoque_baixo():
             print(produto["nome"] + " esta com estoque baixo (" + str(produto["qtd"]) + ")")
 
 
-# funcao antiga, nao usamos mais
-# def exportar():
-#     f = open("dados.txt", "w")
-#     for x in produtos:
-#         f.write(str(x))
-#     f.close()
+# D7: exclusão do bloco de codigo morto comentado (funcao exportar).
 
 
 def relatorio_vendas():
