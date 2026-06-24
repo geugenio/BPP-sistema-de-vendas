@@ -89,27 +89,29 @@ def relatorio_vendas():
 def menu():
     while True:
         print("\n1-Cadastrar  2-Vender  3-Listar  4-Estoque baixo  5-Admin  0-Sair")
-        op = input("Opcao: ")
-        if op == "1":
-            n = input("Nome: ")
-            p = float(input("Preco: "))
-            q = int(input("Qtd: "))
-            add(n, p, q)
-        elif op == "2":
-            n = input("Nome do produto: ")
-            q = int(input("Quantidade: "))
-            vender(n, q)
-        elif op == "3":
+        opcao = input("Opcao: ")
+        
+        # D5: Cadeia de if/elif sequencial
+        if opcao == "1":
+            nome_input = input("Nome: ")
+            preco_input = float(input("Preco: "))
+            qtd_input = int(input("Qtd: "))
+            add(nome_input, preco_input, qtd_input)
+        elif opcao == "2":
+            nome_input = input("Nome do produto: ")
+            qtd_input = int(input("Quantidade: "))
+            vender(nome_input, qtd_input)
+        elif opcao == "3":
             listar()
-        elif op == "4":
+        elif opcao == "4":
             relatorio_estoque_baixo()
-        elif op == "5":
-            s = input("Senha: ")
-            if s == SENHA_ADMIN:
+        elif opcao == "5":
+            senha = input("Senha: ")
+            if senha == SENHA_ADMIN:
                 print("Acesso liberado")
             else:
                 print("Senha errada")
-        elif op == "0":
+        elif opcao == "0":
             break
         else:
             print("Opcao invalida")
