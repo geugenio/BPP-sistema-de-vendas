@@ -9,6 +9,13 @@ import os
 # D1: Senha obtida via variável de ambiente
 SENHA_ADMIN = os.getenv("ESTOQUE_ADMIN_PWD")
 
+# D3: Magic Numbers
+LIMITE_ESTOQUE_BAIXO = 5
+LIMITE_PRECO_DESCONTO_VENDA = 100
+PERCENTUAL_DESCONTO_VENDA = 0.10  
+LIMITE_PRECO_DESCONTO_SIMULACAO = 200
+PERCENTUAL_DESCONTO_SIMULACAO = 0.15  
+
 produtos = []
 
 
@@ -27,9 +34,10 @@ def vender(nome, quantidade):
             if produtos[i]["qtd"] >= quantidade:
                 produtos[i]["qtd"] = produtos[i]["qtd"] - quantidade
                 total = produtos[i]["preco"] * quantidade
-                # desconto pra compras grandes
-                if total > 100:
-                    total = total - total * 0.1
+                # D3: Retirada de Magic Numbers 
+                if total > LIMITE_PRECO_DESCONTO_VENDA:
+                    descontoVenda = total * PERCENTUAL_DESCONTO_VENDA
+                    total -= descontoVenda
                 print("Venda realizada. Total: " + str(total))
                 return total
             else:
@@ -42,8 +50,10 @@ def vender(nome, quantidade):
 # calcula o total de uma compra (usado no relatorio)
 def calcular_total(preco, quantidade):
     t = preco * quantidade
-    if t > 200:                 # limite diferente do usado em vender()
-        t = t - t * 0.15        # desconto diferente do usado em vender()
+    # D3: Retirada de Magic Numbers
+    if t > LIMITE_PRECO_DESCONTO_SIMULACAO:
+        descontoSimulacao = t * PERCENTUAL_DESCONTO_SIMULACAO                   
+        t -= descontoSimulacao
     return t
 
 
@@ -56,7 +66,8 @@ def listar():
 def relatorio_estoque_baixo():
     print("=== ESTOQUE BAIXO ===")
     for x in produtos:
-        if x["qtd"] < 5:        # estoque baixo
+        # Retirada de Magic Numbers (D3)
+        if x["qtd"] < LIMITE_ESTOQUE_BAIXO:        
             print(x["nome"] + " esta com estoque baixo (" + str(x["qtd"]) + ")")
 
 
