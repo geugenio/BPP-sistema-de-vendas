@@ -78,7 +78,8 @@ def relatorio_estoque_baixo():
 
 
 def relatorio_vendas():
-    # TODO: implementar de verdade
+    # D8: Funcionalidade Incompleta (Pagar Depois).
+    # TODO: Implementar a logica real de consolidacao de vendas no proximo ciclo.
     pass
 
 
