@@ -12,8 +12,10 @@ SENHA_ADMIN = os.getenv("ESTOQUE_ADMIN_PWD")
 produtos = []
 
 
-# funcao que adiciona produto
-def add(n, p, q, hist=[]):
+# Argumento mutavel (D2)
+def add(n, p, q, hist=None):
+    if hist is None:
+        hist = []
     produtos.append({"nome": n, "preco": p, "qtd": q})
     hist.append(n)
     print("Produto adicionado!")
